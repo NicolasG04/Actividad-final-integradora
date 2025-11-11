@@ -18,6 +18,7 @@ header{
     display: flex;
     position: fixed;
     justify-content: space-between;
+    transition: all 0.8s ease;
 }
 
 .svg-header{
@@ -37,10 +38,12 @@ header{
     font-weight: 500;
     font-size: 25px;
     margin: 0 10px;
+    transition: all 0.8s ease;
 }
 
 .scroll{
     background-color: var(--fondoYsombras);
+    z-index: 5;
 }
 
 .a-scroll{
@@ -252,6 +255,7 @@ video{
     display: flex;
     justify-content: space-between;
     color: var(--fondoYsombras);
+    user-select: none;
 }
 
 .div-controles{
@@ -312,6 +316,12 @@ video{
     gap: 20px;
 }
 
+.juntos{
+    gap: 0px;
+    animation: zoomOut 2s forwards;
+
+}
+
 .div-juego{
     width: 200px;
     height: 350px;
@@ -341,14 +351,24 @@ video{
 
 .imagenUno{
     rotate: 6deg;
+    width: 200px;
+    height: 350px;
 }
 
 .imagenDos{
     rotate: -6deg;
+    width: 200px;
+    height: 350px;
 }
 
 .imagenTres{
     rotate: 93deg;
+    width: 200px;
+    height: 350px;
+}
+
+.moved{
+    rotate: 0deg;
 }
 
 .titulo-juego{
@@ -362,3 +382,152 @@ button{
     padding: 10px 90px;
     margin-bottom: 120px;
 }
+
+.btn-principal{
+    display: none;
+}
+
+.failed{
+    background-color: var(--fondoYsombras);
+    height: 100vh;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+}
+
+.success{
+    background-color: var(--fondoYsombras);
+    height: 100vh;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.mostrando {
+    display: flex !important;
+}
+
+.puzzle-resuelto{
+    position: relative;
+    z-index: 1;
+    font-size: 50px;
+    color: var(--fondoYsombras);
+    text-shadow: var(--grisSombra) 1px 1px, var(--negro) 4px 4px;
+    text-align: center;
+}
+
+.btn-resuelto{
+    margin-top: 200px;
+}
+
+.imagen-completa {
+  display: flex;
+  position: absolute;
+  width: 600px;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imagen-completa img{
+    width: 200px;
+    height: 350px;
+}
+
+/* NOTE animaciones */
+
+/* Animacion SVG*/
+
+.base, .front, .code {
+    opacity: 0;
+}
+
+.base {
+    transform: translateY(-50px);
+    animation: caer 0.6s ease-out forwards;
+}
+
+.front {
+    transform: translateY(-50px);
+    animation: caer 0.6s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+.code {
+    animation: aparecer 0.6s ease-out forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes caer {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animacion tarjetas home*/
+
+#cardDer.visible {
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
+#cardIzq.visible {
+    animation: slideInLeft 0.8s ease-out forwards;
+    animation-delay: 0.6s; 
+}
+
+.card {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-150px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(150px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Animacion historia*/
+
+.show-left {
+    opacity: 0;
+    transform: translateX(-120px);
+    transition: all 0.8s ease-out;
+}
+
+.show-right {
+    opacity: 0;
+    transform: translateX(120px);
+    transition: all 0.8s ease-out;
+}
+
+.show-left.visible,
+.show-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animacion juego completo*/
+
